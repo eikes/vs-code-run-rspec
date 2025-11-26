@@ -12,7 +12,7 @@ class DebugCodeLensProvider implements vscode.CodeLensProvider {
         const lines = text.split('\n');
 
         for (let i = 0; i < lines.length; i++) {
-            if (lines[i].trim().startsWith('it ') || lines[i].trim().startsWith('describe ')) {
+            if (lines[i].trim().match(/(it|specify|describe|context|include_examples|it_behaves_like|it_should_behave_like)[\s\(]/)) {
                 const range = new vscode.Range(i, 0, i, lines[i].length);
                 const command: vscode.Command = {
                     title: '$(debug-alt) Run',
